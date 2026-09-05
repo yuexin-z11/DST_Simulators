@@ -36,7 +36,6 @@ python3 -m unittest discover -s p1 -v
 | `REPORT.md` | Concise data-structure explanation, algorithm/pseudocode, and verification notes |
 | `*.txt` / `*.chat` | User-supplied circuit descriptions; local only |
 | `results.md` / `results.csv` | Generated input/output tables; local only |
-| `../RESUME_SESSION.md` | Session continuation notes outside the project folder |
 
 ## Verified file syntax
 

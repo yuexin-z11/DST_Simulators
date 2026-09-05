@@ -9,5 +9,8 @@ __pycache__/
 # Local circuit descriptions and generated simulation tables
 *.chat
 p1/*.txt
-p1/results*.md
-p1/results*.csv
+**/results*.md
+**/results*.csv
+
+# Local session continuation notes (any folder)
+[Rr][Ee][Ss][Uu][Mm][Ee]*.[Mm][Dd]

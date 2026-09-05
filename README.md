@@ -18,7 +18,6 @@ Project 1 reads a circuit description, assigns a binary input vector to its decl
 DST_Simulators/
 ├── README.md             # Setup and usage
 ├── .gitignore            # Excludes local circuits, results, and Python caches
-├── RESUME_SESSION.md     # Session continuation notes
 └── p1/
     ├── simulator.py      # Netlist parser, dependency ordering, and simulation CLI
     ├── run_required.py   # Runs the 20 required assignment cases
