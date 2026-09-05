@@ -5,3 +5,9 @@ __pycache__/
 .DS_Store
 .agents/
 .codex/
+
+# Local circuit descriptions and generated simulation tables
+*.chat
+p1/*.txt
+p1/results*.md
+p1/results*.csv

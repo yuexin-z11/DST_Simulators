@@ -46,7 +46,7 @@ SIMULATE(circuit, vector):
 
 ## Simulation-data tables
 
-The complete 20-row table is in [results.md](results.md); [results.csv](results.csv) provides the same data for import. Preserve vector columns as text in spreadsheets to retain leading zeros. Circuit labels use the assignment's `.chat` names; the actual supplied files use `.txt`.
+Run `python3 p1/run_required.py` from the repository root with the four local circuit files present to generate the complete 20-row table in `p1/results.md` and matching `p1/results.csv`. These generated files are ignored by Git and are not included in the repository. Preserve vector columns as text in spreadsheets to retain leading zeros. Circuit labels use the assignment's `.chat` names; the actual supplied files use `.txt`.
 
 ## Verification notes (supporting material)
 
