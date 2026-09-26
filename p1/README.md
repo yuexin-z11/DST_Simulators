@@ -11,7 +11,7 @@ make -C p1 check
 ./p1/build/run_required p1
 ```
 
-The starter builds, but the check and simulator stop at unfinished methods. The batch runner is also a placeholder. Follow [TODO.md](TODO.md) one milestone at a time.
+The single-circuit simulator and parsing/scheduling checks are implemented. Input vectors must contain only binary digits and match the declared input count. The parser assumes valid supplied circuit files. The batch runner remains a placeholder and exits with a TODO message. Follow [TODO.md](TODO.md) for remaining work.
 
 ## Structure
 

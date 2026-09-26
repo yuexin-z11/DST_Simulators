@@ -1,4 +1,4 @@
-// Small CLI wrapper. Circuit parsing and simulation are your implementation tasks.
+// small cli wrapper
 #include "circuit.hpp"
 
 #include <exception>

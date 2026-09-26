@@ -20,7 +20,7 @@ public:
     std::vector<int> outputs;
     std::vector<Gate> gates;
 
-    // Parse and validate a local circuit description.
+    // Parse a local circuit description, assuming valid supplied file syntax.
     static Circuit read(const std::string& path);
 
     // Evaluate one vector using a queue of gates whose sources are available.
@@ -29,6 +29,5 @@ public:
 
 private:
     // Apply one supported Boolean operation to already available source values.
-    static int evaluate_gate(const Gate& gate,
-                             const std::unordered_map<int, int>& values);
+    static int evaluate_gate(const Gate& gate, const std::unordered_map<int, int>& values);
 };
