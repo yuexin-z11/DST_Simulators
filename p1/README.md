@@ -1,4 +1,4 @@
-# Project 1: C++ circuit simulator starter
+# Project 1: C++ circuit simulator
 
 ## Setup
 
@@ -11,7 +11,7 @@ make -C p1 check
 ./p1/build/run_required p1
 ```
 
-The single-circuit simulator and parsing/scheduling checks are implemented. Input vectors must contain only binary digits and match the declared input count. The parser assumes valid supplied circuit files. The batch runner remains a placeholder and exits with a TODO message. Follow [TODO.md](TODO.md) for remaining work.
+The single-circuit simulator and parsing/scheduling checks are implemented. Input vectors must contain only binary digits and match the declared input count. The parser assumes valid supplied circuit files. The batch runner takes the circuit directory as its required argument, runs all 20 vectors, and prints four labeled tables. It writes `results.md` and `results.csv` in that directory, overwriting previous results. Follow [TODO.md](TODO.md) for remaining work.
 
 ## Structure
 
@@ -20,11 +20,11 @@ The single-circuit simulator and parsing/scheduling checks are implemented. Inpu
 | `include/circuit.hpp` | Gate/Circuit data structures and function declarations. |
 | `src/circuit.cpp` | Your parser, gate logic, and queue-based simulation. |
 | `src/main.cpp` | Command-line wrapper: circuit path followed by input vectors. |
-| `src/run_required.cpp` | The 20 required vectors and unfinished batch runner. |
+| `src/run_required.cpp` | Runs the 20 required vectors and exports Markdown/CSV results. |
 | `tests/test_circuit.cpp` | Parsing and simulation checkpoints to expand. |
 | `tests/small.net` | Tiny circuit with gates intentionally out of dependency order. |
-| `REPORT.md` | Report template: two written pages plus simulation data. |
+| `REPORT.md` | Data structures, algorithm pseudocode, and all 20 simulation results. |
 
 Four circuit descriptions are present locally as `s27.txt`, `s298f_2.txt`, `s344f_2.txt`, and `s349f_2.txt`. Confirm they correspond to the assignment's .chat files. The handout does not define the file syntax; implement against the supplied descriptions. Circuit inputs and generated outputs are ignored by Git.
 
-The local `results.md` and `results.csv` are historical outputs from the previous Python implementation. Regenerate results with your completed C++ simulator before using them in the report.
+Generated `results.md` and `results.csv` remain local and are ignored by Git. Binary vectors are written as strings to preserve leading zeros; import CSV vector columns as text when using a spreadsheet.

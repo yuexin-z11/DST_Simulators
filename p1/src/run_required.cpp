@@ -1,17 +1,22 @@
-// Batch-runner starter. These vectors come from the supplied assignment text.
+// Run all supplied vectors and export four Markdown tables plus a CSV table.
 #include "circuit.hpp"
 
 #include <iostream>
+#include <filesystem>
+#include <fstream>
+#include <sstream>
+#include <stdexcept>
 #include <string>
 #include <vector>
 
+// Pair a circuit basename with its five input vectors in the required order.
 struct Benchmark {
     std::string name;
     std::vector<std::string> vectors;
 };
 
 // Strings preserve leading zeros. Keep the handout's order.
-[[maybe_unused]] const std::vector<Benchmark> benchmarks = {
+const std::vector<Benchmark> benchmarks = {
     {"s27", {"1110101", "0001010", "1010101", "0110111", "1010001"}},
     {"s298f_2", {"10101010101010101", "01011110000000111",
                  "11111000001111000", "11100001110001100",
@@ -25,11 +30,52 @@ struct Benchmark {
 };
 
 int main(int argc, char* argv[]) {
-    // Milestone 8: accept a circuit directory, load each circuit, run its
-    // five vectors, and write four input/output tables. Match filenames to
-    // the supplied files; currently the local copies have .txt extensions.
-    (void)argc;
-    (void)argv;
-    std::cerr << "TODO: implement the 20-case batch runner\n";
-    return 1;
+    if (argc != 2) {
+        std::cerr << "Usage: run_required CIRCUIT_DIRECTORY\n";
+        return 2;
+    }
+    try {
+        const std::filesystem::path directory(argv[1]);
+        // Complete every simulation in memory before replacing existing results.
+        std::ostringstream markdown;
+        std::ostringstream csv;
+        markdown << "# Required simulation results\n\n"
+                 << "Bits follow INPUT and OUTPUT declaration order.\n\n";
+        csv << "Circuit,Input vector,Output vector\n";
+
+        for (const Benchmark& benchmark : benchmarks) {
+            // Supplied descriptions use .txt; table labels use the same filename.
+            const std::string filename = benchmark.name + ".txt";
+            const Circuit circuit = Circuit::read((directory / filename).string());
+            markdown << "## " << filename << "\n\n"
+                     << "| Input vector | Output vector |\n"
+                     << "|---|---|\n";
+            for (const std::string& input : benchmark.vectors) {
+                const std::string output = circuit.simulate(input);
+                markdown << "| " << input << " | " << output << " |\n";
+                // These fields contain only fixed filenames and binary digits.
+                csv << filename << ',' << input << ',' << output << '\n';
+            }
+            markdown << '\n';
+        }
+
+        // Write results beside the supplied circuits; reruns overwrite these files.
+        std::ofstream markdown_file(directory / "results.md");
+        std::ofstream csv_file(directory / "results.csv");
+        if (!markdown_file || !csv_file) {
+            throw std::runtime_error("Cannot open result files in " + directory.string());
+        }
+        markdown_file << markdown.str();
+        csv_file << csv.str();
+        markdown_file.close();
+        csv_file.close();
+        if (!markdown_file || !csv_file) {
+            throw std::runtime_error("Failed to write result files");
+        }
+        std::cout << markdown.str();
+        return 0;
+    } catch (const std::exception& error) {
+        std::cerr << "error: " << error.what() << '\n';
+        return 1;
+    }
 }

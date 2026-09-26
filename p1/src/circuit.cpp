@@ -1,4 +1,3 @@
-// Load supplied circuit descriptions and simulate Boolean gates using a ready queue.
 #include "circuit.hpp"
 
 #include <fstream>
@@ -9,7 +8,7 @@
 #include <unordered_set>
 
 Circuit Circuit::read(const std::string& path) {
-    // Read declarations and gate records, assuming valid supplied file syntax.
+    // read declarations and gate records, assuming valid supplied file syntax
     std::ifstream file(path);
     if (!file) {
         throw std::runtime_error("Cannot open circuit file: " + path);
@@ -135,7 +134,7 @@ std::string Circuit::simulate(const std::string& input_vector) const {
         }
     }
 
-    // Detect a stalled queue before trying to collect incomplete output values.
+    // detect a stalled queue before trying to collect incomplete output values.
     if (executed != gates.size()) {
         throw std::logic_error("Cannot evaluate circuit: cycle or missing source");
     }
