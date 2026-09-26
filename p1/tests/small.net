@@ -1,0 +1,4 @@
+INV 3 4
+AND 1 2 3
+INPUT 1 2 -1
+OUTPUT 4 -1

@@ -1,57 +1,30 @@
-# ECE 6140 Project 1
+# Project 1: C++ circuit simulator starter
 
-## Requirements and setup
+## Setup
 
-Use Python 3.9 or newer; no third-party packages are required. Run the commands below from the repository root. Circuit descriptions are not included in Git: supply `s27.txt`, `s298f_2.txt`, `s344f_2.txt`, and `s349f_2.txt` locally in this folder for the batch runner and full tests. These files contain CHAT-format descriptions. The CLI also accepts `.chat` filenames directly.
-
-## Run the simulator
+Use a C++17 compiler (`g++`) and GNU Make. Both are available in the current workspace; no third-party libraries are needed. Commands below start in the repository root. If your terminal is already in `p1/`, use `make` and `./build/...` instead.
 
 ```bash
-python3 p1/simulator.py p1/s27.txt 1110101 0001010
+make -C p1
+make -C p1 check
+./p1/build/simulator p1/s27.txt 1110101 0001010
+./p1/build/run_required p1
 ```
 
-Arguments are the circuit path followed by one or more binary input vectors. Output consists of tab-separated circuit, input-vector, and output-vector columns. The vector length must equal the number of declared inputs.
+The starter builds, but the check and simulator stop at unfinished methods. The batch runner is also a placeholder. Follow [TODO.md](TODO.md) one milestone at a time.
 
-Run all 20 assignment cases:
-
-```bash
-python3 p1/run_required.py
-```
-
-This prints a table and generates `results.md` and `results.csv` beside the script. Existing tables are overwritten. Circuit files and generated results remain local and are ignored by Git.
-
-Run the complete verification suite after supplying all four circuits:
-
-```bash
-python3 -m unittest discover -s p1 -v
-```
-
-## File guide
+## Structure
 
 | File | Purpose |
-|---|---|
-| `simulator.py` | Parser, gate records, circuit representation, topological ordering, Boolean evaluation, and CLI |
-| `run_required.py` | Required input vectors and table generation; contains no expected outputs |
-| `test_simulator.py` | Truth-table tests, error handling, and independent recursive reference comparisons |
-| `REPORT.md` | Concise data-structure explanation, algorithm/pseudocode, and verification notes |
-| `*.txt` / `*.chat` | User-supplied circuit descriptions; local only |
-| `results.md` / `results.csv` | Generated input/output tables; local only |
+| --- | --- |
+| `include/circuit.hpp` | Gate/Circuit data structures and function declarations. |
+| `src/circuit.cpp` | Your parser, gate logic, and queue-based simulation. |
+| `src/main.cpp` | Command-line wrapper: circuit path followed by input vectors. |
+| `src/run_required.cpp` | The 20 required vectors and unfinished batch runner. |
+| `tests/test_circuit.cpp` | Parsing and simulation checkpoints to expand. |
+| `tests/small.net` | Tiny circuit with gates intentionally out of dependency order. |
+| `REPORT.md` | Report template: two written pages plus simulation data. |
 
-## Verified file syntax
+Four circuit descriptions are present locally as `s27.txt`, `s298f_2.txt`, `s344f_2.txt`, and `s349f_2.txt`. Confirm they correspond to the assignment's .chat files. The handout does not define the file syntax; implement against the supplied descriptions. Circuit inputs and generated outputs are ignored by Git.
 
-```text
-INV source destination
-BUF source destination
-AND source1 source2 destination
-OR source1 source2 destination
-NAND source1 source2 destination
-NOR source1 source2 destination
-INPUT node1 node2 ... -1
-OUTPUT node1 node2 ... -1
-```
-
-Node identifiers are nonnegative integers. Blank lines and ordinary whitespace are accepted. INPUT and OUTPUT declarations each occur once and preserve vector bit order; `-1` is a terminator, not a node. Input and output bits follow declaration order, not sorted node order.
-
-The simulator first parses and validates the entire circuit, then computes a dependency order. Each simulation creates fresh node values, assigns the input bits, evaluates every gate once, and collects output bits. No state or delay modeling is needed for the gates in the supplied files.
-
-Malformed records, unsupported gates, invalid vector lengths/content, missing drivers, duplicate drivers, and dependency cycles produce errors. A missing-file error means the circuit path is incorrect or the local circuit descriptions have not been supplied.
+The local `results.md` and `results.csv` are historical outputs from the previous Python implementation. Regenerate results with your completed C++ simulator before using them in the report.

@@ -2,6 +2,7 @@ __pycache__/
 *.py[cod]
 .venv/
 .pytest_cache/
+p1/build/
 .DS_Store
 .agents/
 .codex/
