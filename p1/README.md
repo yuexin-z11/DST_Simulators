@@ -24,6 +24,8 @@ The single-circuit simulator and parsing/scheduling checks are implemented. Inpu
 | `tests/test_circuit.cpp` | Parsing and simulation checkpoints to expand. |
 | `tests/small.net` | Tiny circuit with gates intentionally out of dependency order. |
 | `REPORT.md` | Data structures, algorithm pseudocode, and all 20 simulation results. |
+| `report_tables.xlsx` | Excel workbook with the data structures and four simulation result tables. |
+| `figures/` | Circuit-specific screenshots referenced by the report. |
 
 Four circuit descriptions are present locally as `s27.txt`, `s298f_2.txt`, `s344f_2.txt`, and `s349f_2.txt`. Confirm they correspond to the assignment's .chat files. The handout does not define the file syntax; implement against the supplied descriptions. Circuit inputs and generated outputs are ignored by Git.
 

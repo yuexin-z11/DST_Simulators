@@ -69,6 +69,8 @@ Tables use the handout's `.chat` names; local descriptions have corresponding `.
 | `0110111` | `0001` |
 | `1010001` | `1001` |
 
+![s27 simulation results](figures/s27-results.png)
+
 ### s298f_2.chat
 
 | Input vector | Output vector |
@@ -78,6 +80,8 @@ Tables use the handout's `.chat` names; local descriptions have corresponding `.
 | `11111000001111000` | `00000000001111010010` |
 | `11100001110001100` | `00000000100100100101` |
 | `01111011110000000` | `11111011110000101101` |
+
+![s298f_2 simulation results](figures/s298f_2-results.png)
 
 ### s344f_2.chat
 
@@ -89,6 +93,8 @@ Tables use the handout's `.chat` names; local descriptions have corresponding `.
 | `111000011100011000000000` | `00001101111001111111000010` |
 | `011110111100000001111111` | `10011101111000001001000100` |
 
+![s344f_2 simulation results](figures/s344f_2-results.png)
+
 ### s349f_2.chat
 
 | Input vector | Output vector |
@@ -98,3 +104,5 @@ Tables use the handout's `.chat` names; local descriptions have corresponding `.
 | `111110000011110001111111` | `00011100000111010001111100` |
 | `111000011100011000000000` | `00001101111001110010001111` |
 | `011110111100000001111111` | `10011101111000001010000100` |
+
+![s349f_2 simulation results](figures/s349f_2-results.png)
