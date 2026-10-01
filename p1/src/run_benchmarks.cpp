@@ -1,4 +1,4 @@
-// Run all supplied vectors and export four Markdown tables plus a CSV table.
+// Run the benchmark vectors and export four Markdown tables plus a CSV table.
 #include "circuit.hpp"
 
 #include <iostream>
@@ -9,13 +9,13 @@
 #include <string>
 #include <vector>
 
-// Pair a circuit basename with its five input vectors in the required order.
+// Pair a circuit basename with its five input vectors in benchmark order.
 struct Benchmark {
     std::string name;
     std::vector<std::string> vectors;
 };
 
-// Strings preserve leading zeros. Keep the handout's order.
+// Strings preserve leading zeros and keep the benchmark vectors in a stable order.
 const std::vector<Benchmark> benchmarks = {
     {"s27", {"1110101", "0001010", "1010101", "0110111", "1010001"}},
     {"s298f_2", {"10101010101010101", "01011110000000111",
@@ -31,7 +31,7 @@ const std::vector<Benchmark> benchmarks = {
 
 int main(int argc, char* argv[]) {
     if (argc != 2) {
-        std::cerr << "Usage: run_required CIRCUIT_DIRECTORY\n";
+        std::cerr << "Usage: run_benchmarks CIRCUIT_DIRECTORY\n";
         return 2;
     }
     try {
@@ -39,7 +39,7 @@ int main(int argc, char* argv[]) {
         // Complete every simulation in memory before replacing existing results.
         std::ostringstream markdown;
         std::ostringstream csv;
-        markdown << "# Required simulation results\n\n"
+        markdown << "# Benchmark simulation results\n\n"
                  << "Bits follow INPUT and OUTPUT declaration order.\n\n";
         csv << "Circuit,Input vector,Output vector\n";
 

@@ -17,13 +17,13 @@ int main(int argc, char* argv[]) {
             circuit.outputs != std::vector<int>{4} || circuit.gates.size() != 2) {
             throw std::runtime_error("Small-circuit parsing check failed");
         }
-        std::cout << "Parsing checkpoint passed\n";
+        std::cout << "Parsing check passed\n";
         // File order puts INV before its source-producing AND gate.
         if (circuit.simulate("11") != "0" || circuit.simulate("10") != "1" ||
             circuit.simulate("11") != "0") {
-            throw std::runtime_error("Simulation checkpoint failed");
+            throw std::runtime_error("Simulation check failed");
         }
-        std::cout << "Simulation checkpoint passed\n";
+        std::cout << "Simulation check passed\n";
         // Exercise every input combination through the public simulation API.
         const std::vector<std::string> kinds = {"INV", "BUF", "AND", "OR", "NAND", "NOR"};
         const std::vector<std::string> truth = {"10", "01", "0001", "0111", "1110", "1000"};
